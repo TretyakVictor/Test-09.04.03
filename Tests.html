@@ -175,6 +175,7 @@
           // Вопросы
 
           var yourAns = new Array;
+          var scoreUndef = 0;
           var score = 0;
           var total = 0;
 
@@ -184,13 +185,16 @@
 
           function Score() {
             var answerText = "<h1>Результаты:</h1>";
-            total = yourAns.length;
-            for (var i = 0; i < yourAns.length; ++i) {
+            total = questions.length;
+            for (var i = 0; i < questions.length; ++i) {
               var num = i + 1;
               answerText += "<br><quest>Вопрос №" + num + "</quest>";
-              if (questions[i].answers[yourAns[i]] != questions[i].correctAnswer) {
-                answerText += ": <font color='red'>Не верно!</font><br>Ваш ответ: " + questions[i].answers[yourAns[i]] + "<br>Правильный ответ: " +
-                  questions[i].correctAnswer + "<br>";
+              if (typeof questions[i].answers[yourAns[i]] == "undefined") {
+                ++scoreUndef;
+                answerText += ": <font color='gray'>Не выбран.</font> <br>";
+              } else if (questions[i].answers[yourAns[i]] != questions[i].correctAnswer) {
+                answerText += ": <font color='red'>Не верно!</font><br>Ваш ответ: " + questions[i].answers[yourAns[i]] +
+                "<br>Правильный ответ: " + questions[i].correctAnswer + "<br>";
               } else {
                 answerText += ": <font color='green'>Верно!</font> <br>";
                 ++score;
@@ -198,11 +202,15 @@
             }
 
             answerText += "<br>Всего правильных ответов: <font color='green'>" + score + "</font>";
-            answerText += "<br>Всего не правильных ответов: <font color='red'>" + (total-score) + "</font>";
+            answerText += "<br>Всего не правильных ответов: <font color='red'>" + (total-score-scoreUndef) + "</font>";
+            if (scoreUndef > 0) {
+              answerText += "<br>Всего не выбрано: <font color='gray'>" + scoreUndef + "</font>";
+            }
             answerText += "<br>Всего вопросов: " + total;
 
             var divka = document.getElementById('middle');
-
+            var curent_url = document.URL;
+            answerText += '<br><br><form action="' + curent_url + '"><button type="submit">Начать тест сначала</button></form>';
             divka.innerHTML = answerText;
           }
 
