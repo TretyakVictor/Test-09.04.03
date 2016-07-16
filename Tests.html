@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Тесты</title>
@@ -102,6 +103,11 @@
       margin-top: 0px;
       margin-bottom: -15px;
     }
+    quest {
+      color: #F88F26;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
 
     h3 {
       color: #F88F26;
@@ -109,6 +115,7 @@
       text-align: left;
       margin-top: 0px;
     }
+
     h4 {
       font-weight: bold;
       text-align: center;
@@ -140,7 +147,7 @@
               "совокупность органов и средств защиты информации, функционирующие по соответствующим организационно-распорядительным и нормативным документам."
             ],
             correctAnswer: "совокупность органов, средств защиты и объекты защиты информации, функционирующие в соответствии с правовыми, нормативными и организационно-распорядительными документами;"
-            }, {
+          }, {
             text: "Информационная безопасность автоматизированной системы – это состояние автоматизированной системы, при котором она…",
             answers: ["с одной стороны, способна противостоять воздействию внешних и внутренних информационных угроз, а с другой – ее наличие и функционирование не создает информационных угроз для элементов самой системы и внешней среды;",
               "с одной стороны, способна противостоять воздействию внешних и внутренних информационных угроз, а с другой – затраты на её функционирование ниже, чем предполагаемый ущерб от утечки защищаемой информации;",
@@ -148,7 +155,7 @@
               "способна противостоять только внешним информационным угрозам."
             ],
             correctAnswer: "с одной стороны, способна противостоять воздействию внешних и внутренних информационных угроз, а с другой – ее наличие и функционирование не создает информационных угроз для элементов самой системы и внешней среды;"
-            }, {
+          }, {
             text: "Решение каких задач информационной безопасности обеспечивает ЭЦП, как реквизит электронного документа?",
             answers: ["аутентичность;",
               "конфиденциальность;",
@@ -156,7 +163,7 @@
               "целостность."
             ],
             correctAnswer: "аутентичность;"
-            }, {
+          }, {
             text: "Какой стандарт определяет основные понятия защиты информации и информационной безопасности компьютерных систем:",
             answers: ["ГОСТ Р 50922-96;",
               "ГОСТ 28147-89;",
@@ -164,62 +171,56 @@
               "ГОСТ Р 34.10-2001."
             ],
             correctAnswer: "ГОСТ Р 50922-96;"
-            }
-          ];
+          }];
           // Вопросы
 
           var yourAns = new Array;
           var score = 0;
+          var total = 0;
 
           function Engine(question, answer) {
             yourAns[question] = answer;
           }
 
           function Score() {
-            var answerText = "Результаты:\n";
+            var answerText = "<h1>Результаты:</h1>";
+            total = yourAns.length;
             for (var i = 0; i < yourAns.length; ++i) {
               var num = i + 1;
-              answerText = answerText + "\n    Вопрос №" + num + "";
+              answerText += "<br><quest>Вопрос №" + num + "</quest>";
               if (questions[i].answers[yourAns[i]] != questions[i].correctAnswer) {
-                answerText = answerText + "\n    Ваш ответ: "+questions[i].answers[yourAns[i]]+" \n      Правильный ответ: " +
-                questions[i].correctAnswer + "\n";
+                answerText += ": <font color='red'>Не верно!</font><br>Ваш ответ: " + questions[i].answers[yourAns[i]] + "<br>Правильный ответ: " +
+                  questions[i].correctAnswer + "<br>";
               } else {
-                answerText = answerText + ": Верно! \n";
+                answerText += ": <font color='green'>Верно!</font> <br>";
                 ++score;
               }
             }
 
-            answerText = answerText + "\nВсего правильных ответов: " + score + "\n";
+            answerText += "<br>Всего правильных ответов: <font color='green'>" + score + "</font>";
+            answerText += "<br>Всего не правильных ответов: <font color='red'>" + (total-score) + "</font>";
+            answerText += "<br>Всего вопросов: " + total;
 
-            alert(answerText);
-            yourAns = [];
-            score = 0;
-            clearForm("quiz");
+            var divka = document.getElementById('middle');
+            // <script type="text/javascript"> var curent_url = document.URL; document.write("<a id='end' style='display: none;' class='myButton' href='" + curent_url + "'>Начать сначала</a>"); </script>
+            divka.innerHTML = answerText;
           }
 
-          function clearForm(name) {
-            var f = document.forms[name];
-            for (var i = 0; i < f.elements.length; ++i) {
-              if (f.elements[i].checked)
-                f.elements[i].checked = false;
-            }
-          }
         </script>
 
         <script type="text/javascript">
-        Array.prototype.shuffle = function( b )
-        {
-          var i = this.length, j, t;
-          while( i )
-          {
-          j = Math.floor( ( i-- ) * Math.random() );
-          t = b && typeof this[i].shuffle!=='undefined' ? this[i].shuffle() : this[i];
-          this[i] = this[j];
-          this[j] = t;
-          }
+          Array.prototype.shuffle = function(b) {
+            var i = this.length,
+              j, t;
+            while (i) {
+              j = Math.floor((i--) * Math.random());
+              t = b && typeof this[i].shuffle !== 'undefined' ? this[i].shuffle() : this[i];
+              this[i] = this[j];
+              this[j] = t;
+            }
 
-          return this;
-        };
+            return this;
+          };
         </script>
 
         <script type="text/javascript">
@@ -227,16 +228,17 @@
             questions.shuffle();
             var divka = document.getElementById('middle');
             var str;
-            str = "<h1>"+title+"</h1>"+"<h2>"+subtitle+"</h2>"+"<form name='quiz'><ol>";
+            str = "<h1>" + title + "</h1>" + "<h2>" + subtitle + "</h2>" + "<form name='quiz'><ol>";
             for (var q = 0; q < questions.length; ++q) {
               var question = questions[q];
               var idx = q;
               str += '<br><li><h3>' + question.text + '</h3>';
               question.answers.shuffle();
               for (var i = 0; i < question.answers.length; ++i) {
-                idx++;
-                str += '<input type=radio name="q' + idx + '" value="' + i +
-                  '" onClick="Engine(' + q + ', this.value)">' + question.answers[i] + '<br>';
+                var id = "quest" + idx + (i+1);
+                str += '<input type="radio" name="q' + idx + '" value="' + i +
+                  '" onClick="Engine(' + q + ', this.value)" id="' + id + '">';
+                str += '<label for="' + id + '">' + question.answers[i] + '</label><br>';
               }
             }
             str += '<br><input type="button" onClick="Score()" value="Проверить результаты" />';
