@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Тесты</title>
+  <meta name="author" content="Tretyak Victor" />
+  <style type="text/css">
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font: normal 14px 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana;
+      color: #BDBDBD;
+      background-color: #333333;
+      background-repeat: repeat-x;
+    }
+
+    input {
+      background-color: #555555;
+      border: 1px solid #666666;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      color: #F88F26;
+      font-weight: bold;
+    }
+
+    button {
+      background-color: #555555;
+      border: 1px solid #666666;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      color: #F88F26;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #777777;
+    }
+
+    button:active {
+      background: #666666;
+    }
+
+    #wrapper {
+      position: relative;
+    }
+
+    #pageWrapper {
+      width: 800px;
+      min-height: 100%;
+      margin-bottom: -63px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #333333;
+    }
+
+    #buffer {
+      height: 63px;
+    }
+
+    #header {
+      height: 60px;
+      position: inherit;
+      border-bottom: 2px solid #68050A;
+    }
+
+    #middle {
+      position: inherit;
+      top: 2px;
+      background-color: #333333;
+    }
+
+    #footer {
+      height: 61px;
+      width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      border-top: 2px solid #68050A;
+      background-color: #333333;
+      text-align: center;
+    }
+
+    #footerText {
+      position: inherit;
+      top: 10px;
+      height: 25px;
+      background-color: #333333;
+      color: #6A6A6A;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: bold;
+      color: #F88F26;
+      text-align: center;
+      margin-top: 0px;
+      margin-bottom: -15px;
+    }
+
+    h3 {
+      color: #F88F26;
+      font-weight: bold;
+      text-align: left;
+      margin-top: 0px;
+    }
+    h4 {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="pageWrapper">
+    <div id="wrapper">
+      <div id="header">
+        <h1>Тесты</h1>
+        <h4>(09.04.03)</h4>
+      </div>
+      <div id="middle">
+        <br>
+        <script type="text/javascript">
+          // Заголовок страницы (h1)
+          var title = 'Тест по направлению магистратуры 09.04.03';
+          // Подзаголовок (h2)
+          var subtitle = "Этот тест позволяет... ну типа подготовиться или типа того. Хотя всё равно лажанем.";
+
+          // Вопросы
+          var questions = [{
+            text: "Система защиты информации – это …",
+            answers: ["совокупность органов, средств защиты и объекты защиты информации, функционирующие в соответствии с правовыми, нормативными и организационно-распорядительными документами;",
+              "совокупность органов и/или исполнителей, действующих по правилам, установленными соответствующими органами и правовыми документами по защите информации;",
+              "совокупность органов и средств защиты информации, функционирующие по соответствующим организационно-распорядительным и нормативным документам."
+            ],
+            correctAnswer: "совокупность органов, средств защиты и объекты защиты информации, функционирующие в соответствии с правовыми, нормативными и организационно-распорядительными документами;"
+            }, {
+            text: "Информационная безопасность автоматизированной системы – это состояние автоматизированной системы, при котором она…",
+            answers: ["с одной стороны, способна противостоять воздействию внешних и внутренних информационных угроз, а с другой – ее наличие и функционирование не создает информационных угроз для элементов самой системы и внешней среды;",
+              "с одной стороны, способна противостоять воздействию внешних и внутренних информационных угроз, а с другой – затраты на её функционирование ниже, чем предполагаемый ущерб от утечки защищаемой информации;",
+              "способна противостоять только информационным угрозам, как внешним, так и внутренним;",
+              "способна противостоять только внешним информационным угрозам."
+            ],
+            correctAnswer: "с одной стороны, способна противостоять воздействию внешних и внутренних информационных угроз, а с другой – ее наличие и функционирование не создает информационных угроз для элементов самой системы и внешней среды;"
+            }, {
+            text: "Решение каких задач информационной безопасности обеспечивает ЭЦП, как реквизит электронного документа?",
+            answers: ["аутентичность;",
+              "конфиденциальность;",
+              "неотказуемость;",
+              "целостность."
+            ],
+            correctAnswer: "аутентичность;"
+            }, {
+            text: "Какой стандарт определяет основные понятия защиты информации и информационной безопасности компьютерных систем:",
+            answers: ["ГОСТ Р 50922-96;",
+              "ГОСТ 28147-89;",
+              "ГОСТ Р 34.11-94;",
+              "ГОСТ Р 34.10-2001."
+            ],
+            correctAnswer: "ГОСТ Р 50922-96;"
+            }
+          ];
+          // Вопросы
+
+          var yourAns = new Array;
+          var score = 0;
+
+          function Engine(question, answer) {
+            yourAns[question] = answer;
+          }
+
+          function Score() {
+            var answerText = "Результаты:\n";
+            for (var i = 0; i < yourAns.length; ++i) {
+              var num = i + 1;
+              answerText = answerText + "\n    Вопрос №" + num + "";
+              if (questions[i].answers[yourAns[i]] != questions[i].correctAnswer) {
+                answerText = answerText + "\n    Ваш ответ: "+questions[i].answers[yourAns[i]]+" \n      Правильный ответ: " +
+                questions[i].correctAnswer + "\n";
+              } else {
+                answerText = answerText + ": Верно! \n";
+                ++score;
+              }
+            }
+
+            answerText = answerText + "\nВсего правильных ответов: " + score + "\n";
+
+            alert(answerText);
+            yourAns = [];
+            score = 0;
+            clearForm("quiz");
+          }
+
+          function clearForm(name) {
+            var f = document.forms[name];
+            for (var i = 0; i < f.elements.length; ++i) {
+              if (f.elements[i].checked)
+                f.elements[i].checked = false;
+            }
+          }
+        </script>
+
+        <script type="text/javascript">
+        Array.prototype.shuffle = function( b )
+        {
+          var i = this.length, j, t;
+          while( i )
+          {
+          j = Math.floor( ( i-- ) * Math.random() );
+          t = b && typeof this[i].shuffle!=='undefined' ? this[i].shuffle() : this[i];
+          this[i] = this[j];
+          this[j] = t;
+          }
+
+          return this;
+        };
+        </script>
+
+        <script type="text/javascript">
+          function show() {
+            questions.shuffle();
+            var divka = document.getElementById('middle');
+            var str;
+            str = "<h1>"+title+"</h1>"+"<h2>"+subtitle+"</h2>"+"<form name='quiz'><ol>";
+            for (var q = 0; q < questions.length; ++q) {
+              var question = questions[q];
+              var idx = q;
+              str += '<br><li><h3>' + question.text + '</h3>';
+              question.answers.shuffle();
+              for (var i = 0; i < question.answers.length; ++i) {
+                idx++;
+                str += '<input type=radio name="q' + idx + '" value="' + i +
+                  '" onClick="Engine(' + q + ', this.value)">' + question.answers[i] + '<br>';
+              }
+            }
+            str += '<br><input type="button" onClick="Score()" value="Проверить результаты" />';
+            str += "</ol></form>";
+            divka.innerHTML = str;
+          }
+        </script>
+
+        <input type="button" value="Начать тест" name="hello" OnClick="show();">
+
+      </div>
+    </div>
+    <div id="buffer"></div>
+  </div>
+  <div id="footer">
+    <div id="footerText">
+      Created by Tretyak Victor
+    </div>
+  </div>
+
+</body>
+
+</html>
