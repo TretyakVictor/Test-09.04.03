@@ -262,7 +262,7 @@
         answerText += "<br>Всего не выбрано: <font color='gray'>" + scoreUndef + "</font>";
       }
       answerText += "<br>Всего вопросов: " + total;
-      answerText += "<br>Время: " + myTime + " сек";
+      answerText += "<br>Время: " + (myTime/60) + " мин";
 
       var divka = document.getElementById('middle');
       var curent_url = document.URL;
@@ -298,6 +298,7 @@
 
     function sec() {
       myTime++;
+      document.getElementById("time").innerHTML = myTime;
     }
 
     function viewContent(n) {
@@ -314,7 +315,7 @@
       } else {
         total = questions.length;
       }
-      str = "<h1>" + title + "</h1>" + "<h2>" + subtitle + "</h2>" + "<form name='quiz'><ol>";
+      str = "Время: <span id='time'></span> сек" + "<h1>" + title + "</h1>" + "<h2>" + subtitle + "</h2>" + "<form name='quiz'><ol>";
       for (var q = 0; q < total; ++q) {
         var question = questions[q];
         var idx = q;
