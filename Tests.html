@@ -137,7 +137,7 @@
           // Заголовок страницы (h1)
           var title = 'Тест по направлению магистратуры 09.04.03';
           // Подзаголовок (h2)
-          var subtitle = "Этот тест позволяет... ну типа подготовиться или типа того. Хотя всё равно лажанем.";
+          var subtitle = "Этот тест позволяет... ну типа подготовиться или типа того. Хотя кого мы обманываем, всё равно лажанем.";
 
           // Вопросы
           var questions = [{
@@ -193,8 +193,8 @@
                 ++scoreUndef;
                 answerText += ": <font color='gray'>Не выбран.</font> <br>";
               } else if (questions[i].answers[yourAns[i]] != questions[i].correctAnswer) {
-                answerText += ": <font color='red'>Не верно!</font><br>Ваш ответ: " + questions[i].answers[yourAns[i]] +
-                "<br>Правильный ответ: " + questions[i].correctAnswer + "<br>";
+                answerText += ": <font color='red'>Не верно!</font><br><b>Вопрос: " + questions[i].text + "</b><br><b>Ваш ответ:</b> "
+                + questions[i].answers[yourAns[i]] + "<br><b>Правильный ответ:</b> " + questions[i].correctAnswer + "<br>";
               } else {
                 answerText += ": <font color='green'>Верно!</font> <br>";
                 ++score;
