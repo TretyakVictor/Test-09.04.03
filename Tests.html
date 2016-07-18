@@ -157,7 +157,7 @@
         <br />
         <br />
         <br />
-        <span onclick="viewContent('cnt1'); return false">"Системные требования"(тык сюда)</span>
+        <span onclick="viewContent('cnt1'); return false">"Системные требования" (тык сюда)</span>
         <span id="cnt1">У вас в браузере должен быть включен javascript.<br />Работоспособность проверялась в браузерах:
           <ol>
             <li>Opera v-38;</li>
@@ -178,10 +178,8 @@
   <script type="text/javascript">
     var userQuestNum = 0;
     var timer;
-    var myTime = 0;
-    // Заголовок страницы (h1)
+    var time = "00:00:00";
     var title = 'Тест по направлению магистратуры 09.04.03';
-    // Подзаголовок (h2)
     var subtitle = "Этот тест позволяет... ну типа подготовиться или типа того. Хотя кого мы обманываем, всё равно лажанем.";
 
     // Вопросы
@@ -356,7 +354,8 @@
     }
 
     function Score() {
-      clearInterval(timer);
+      clockStop();
+      // clearInterval(timer);
       var answerText = "<h1>Результаты:</h1>";
       if (userQuestNum > 0) {
         total = userQuestNum;
@@ -384,7 +383,7 @@
         answerText += "<br>Всего не выбрано: <font color='gray'>" + scoreUndef + "</font>";
       }
       answerText += "<br>Всего вопросов: " + total;
-      answerText += "<br>Время: " + (myTime / 60) + " мин";
+      answerText += "<br>Время: " + time;
 
       var divka = document.getElementById('middle');
       var curent_url = document.URL;
@@ -418,9 +417,43 @@
       show();
     }
 
-    function sec() {
-      myTime++;
-      document.getElementById("time").innerHTML = myTime;
+    function clockStart() {
+      timer = setInterval(clockUpdater, 1000);
+      clockUpdater();
+    }
+
+    function clockUpdater() {
+      var hms = time.split(":");
+      var h = parseInt(hms[0]);
+      var m = parseInt(hms[1]);
+      var s = parseInt(hms[2]);
+      if (s == 59) {
+        s = 0;
+        if (m == 59) {
+          m = 0;
+          ++h;
+        } else {
+          ++m;
+        }
+      } else {
+        ++s;
+      }
+      if (s < 10) {
+        s = "0" + s;
+      }
+      if (m < 10) {
+        m = "0" + m;
+      }
+      if (h < 10) {
+        h = "0" + h;
+      }
+      time = h + ":" + m + ":" + s;
+      document.getElementById("timer").textContent = time;
+    }
+
+    function clockStop() {
+      clearInterval(timer);
+      timer = null;
     }
 
     function viewContent(n) {
@@ -429,7 +462,6 @@
     }
 
     function show() {
-      timer = setInterval(sec, 1000);
       var divka = document.getElementById('middle');
       var str;
       if (userQuestNum > 0) {
@@ -437,7 +469,8 @@
       } else {
         total = questions.length;
       }
-      str = "Время: <span id='time'></span> сек" + "<h1>" + title + "</h1>" + "<h2>" + subtitle + "</h2>" + "<form name='quiz'><ol>";
+      str = "<h1>" + title + "</h1>" + "<h2>" + subtitle + "</h2>" +
+      "<div style='text-align: center;'><font size='5'>Время теста: <font color='red'><span id='timer'></span></font></font></div>" + "<form name='quiz'><ol>";
       for (var q = 0; q < total; ++q) {
         var question = questions[q];
         var idx = q;
@@ -453,6 +486,7 @@
       str += '<br><input type="button" onClick="Score()" value="Проверить результаты" />';
       str += "</ol></form>";
       divka.innerHTML = str;
+      clockStart("timer");
     }
   </script>
 </body>
